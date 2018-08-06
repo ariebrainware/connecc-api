@@ -1,0 +1,47 @@
+{
+  "counter": 7,
+  "contacts": [
+    {
+      "id": 0,
+      "name": "Juliet Ramsey",
+      "phoneNumber": "+585-65-5882562",
+      "email": "fisoxefa@mailinator.net",
+      "address": "Ullam at reiciendis solut"
+    },
+    {
+      "id": 1,
+      "name": "Wing Goodwin",
+      "phoneNumber": "+841-67-7551332",
+      "email": "xinifimezu@mailinator.com",
+      "address": "Irure quas voluptate culp"
+    },
+    {
+      "id": 2,
+      "name": "Tyrone Mendez",
+      "phoneNumber": "+149-27-6689877",
+      "email": "syzyhusepy@mailinator.com",
+      "address": "Ullam omnis magnam sunt e"
+    },
+    {
+      "id": 3,
+      "name": "Gabriel Powers",
+      "phoneNumber": "+386-76-8632141",
+      "email": "wywesamixe@mailinator.com",
+      "address": "Ut in dolor magni officii"
+    },
+    {
+      "id": 4,
+      "name": "Tanya Holden",
+      "phoneNumber": "+333-30-8138551",
+      "email": "sogify@mailinator.com",
+      "address": "Ex expedita id et ipsam q"
+    },
+    {
+      "id": 6,
+      "name": "Hoyt Mckay",
+      "phoneNumber": "+574-15-8944014",
+      "email": "cejepe@mailinator.net",
+      "address": "Veniam non qui eum ut ut"
+    }
+  ]
+}
