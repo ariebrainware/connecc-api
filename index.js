@@ -12,7 +12,10 @@ server.use(bodyParser.urlencoded({
     extended: true
 }));
 
-server.get(`/`, contact.show)
+server.get(`/contacts`, contact.showContact)
+server.post(`/contacts`, contact.addContact)
+server.delete(`/contact`), contact.deleteContact
+server.post(`/contact/search`,contact.searchContact)
 
 server.listen(port, () => console.log(`
         Contact server listening on port ${port}
