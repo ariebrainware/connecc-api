@@ -1,78 +1,113 @@
-const fs = require(`fs`);
+const mariadb = require('mariadb');
 
-const JSON_FILE = './data/contact.json';
-const DATA = JSON.parse(fs.readFileSync(JSON_FILE, `utf8`));
+// const JSON_FILE = './data/contact.json';
+// const DATA = JSON.parse(fs.readFileSync(JSON_FILE, `utf8`));
 
-const errorMsg = (req, res) => {
-  res.status(404).send({
-    message: 'Error, Not found!!'
-  });
-};
+// Connection stuff
+const pool = mariadb.createPool({
+  host: 'localhost',
+  user: 'brainware',
+  password: 'root',
+  database: 'connecc',
+  connectionLimit: 5
+});
 
-const file = {
-  read: () => {
-    const JSON_FILE = './data/contact.json';
-    const DATA = JSON.parse(fs.readFileSync(JSON_FILE, `utf8`));
-    return DATA;
-  },
-
-  write: DATA => {
-    const contactString = JSON.stringify(DATA, null, 2);
-    fs.writeFileSync(JSON_FILE, contactString, 'utf-8');
+const devTeam = {
+  showDevTeam: (req, res) => {
+    pool
+      .query('SELECT * FROM team_members')
+      .then(rows => {
+        res.status(200).send(rows)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+    
   }
-};
-
+}
+//-------------------------------------------------------
 const contacts = {
   showContact: (req, res) => {
-    const DATA = file.read();
-    res.status(200).send(DATA);
+    pool
+      .query('SELECT * FROM contacts')
+      .then(rows => {
+        res.status(200).send(rows)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+    
   },
 
   addContact: (req, res) => {
     if (
       req.body.name &&
-      req.body.phoneNumber &&
+      req.body.phone_number &&
       req.body.email &&
       req.body.address
     ) {
-      const newData = {
-        id: DATA.counter++,
-        name: req.body.name,
-        phoneNumber: req.body.phoneNumber,
-        email: req.body.email,
-        address: req.body.address
-      };
-
-      DATA.contacts.push(newData);
-
-      const contactString = JSON.stringify(DATA, null, 2);
-      fs.writeFileSync(JSON_FILE, contactString, 'utf-8');
-
-      res.status(200).send(newData);
+      pool
+        .query(`INSERT INTO contacts VALUES(?,?,?,?,?)`, ['', req.body.name,
+          req.body.phone_number,
+          req.body.address,
+          req.body.email
+        ])
+        .then(() => {
+          res.status(200).send({
+            message: 'Data saved to Database :)'
+          });
+          
+        })
+        .catch(err => res.status(500).send(err))
     } else {
-      errorMsg();
+      res.send(500).send({
+        message: 'ERROR!'
+      })
+      
     }
   },
 
   deleteContact: (req, res) => {
-    DATA.contacts = DATA.contacts.filter(item => {
-      return item.id !== Number(req.params.id);
-    });
-
-    console.log(DATA.contacts);
-
-    const contactString = JSON.stringify(DATA, null, 2);
-    fs.writeFileSync(JSON_FILE, contactString, 'utf-8');
-
-    res.status(200).send({
-      message: 'Successfully deleted!'
-    });
+    const idContact = req.params.id
+    
+    pool
+      .query(`DELETE FROM contacts WHERE id=${idContact}`)
+      .then(() => {
+        res.status(200).send({
+          message: 'Data deleted from Database :)'
+        })
+      })
+      .catch(err => {
+        res.status(500).send(err)  
+      })
   },
 
   searchContact: (req, res) => {
-    const query = req.query;
+    const query = req.query.q;
 
-    res.status(200).send(DATA);
+    if(query){
+      pool
+      .query(`SELECT * FROM contacts WHERE name LIKE '%' '${query}' '%' OR address LIKE '%' '${query}' '%'`)
+      .then(rows => {
+        const tmpData = [rows]
+        res.status(200).send({
+          message: "Data founded!! :)",
+          "Total count": tmpData.length,
+          rows
+        })
+      })
+      .catch(err => {
+        res.status(500).send(err)
+      })  
+    }else{
+      res.send({
+        message:"Please specify your keyword!! :/"
+      })
+    }
+    
   }
+}
+module.exports = {
+  contacts,
+  devTeam
 };
-module.exports = contacts;
