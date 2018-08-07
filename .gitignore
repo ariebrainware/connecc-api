@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
 node_modules
 bower_components
->>>>>>> 51aff7462603a2de5685da9ab65ff8f7e7c72ce7
 *.zip
 
+database/connecc.sql
