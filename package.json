@@ -1,16 +1,13 @@
 {
   "name": "connecc",
   "version": "0.1.0",
-  "description": "Connecc",
+  "description": "A software to help you organize your contact. <https://nobody.netlify.com/>",
   "main": "index.html",
   "scripts": {
     "start": "live-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/glintsacademy-1/connecc.git"
-  },
+  "repository": "git+https://github.com/glintsacademy-1/connecc.git",
   "keywords": [
     "connecc"
   ],
@@ -22,5 +19,9 @@
   "homepage": "https://github.com/glintsacademy-1/connecc#readme",
   "devDependencies": {
     "live-server": "^1.2.0"
+  },
+  "private": false,
+  "dependencies": {
+    "mariadb": "^0.7.0"
   }
 }
