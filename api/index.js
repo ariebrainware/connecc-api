@@ -91,8 +91,8 @@ const contacts = {
       .then(rows => {
         const tmpData = [rows]
         res.status(200).send({
-          message: "Data founded!! :)",
-          "Total count": tmpData.length,
+          message: "Data found",
+          "total_count": tmpData.length,
           rows
         })
       })
