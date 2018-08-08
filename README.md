@@ -2,6 +2,7 @@
 
 API Section for Connecc application
 
+
 | Endpoint           | HTTP   | Description             |
 | ------------------ | ------ | ----------------------- |
 | `/contacts`        | GET    | Show all contacts       |
@@ -11,6 +12,7 @@ API Section for Connecc application
 | `/connecc/devteam` | GET    | List Connecc DevTeam    |
 
 ## Feature
+
 Adding Database Feature which is contains Connecc DevTeam's Information
 
 ```
@@ -25,6 +27,7 @@ Adding Database Feature which is contains Connecc DevTeam's Information
 *Not contain all field because layouting problem*
 
 ### SQL VIEWS
+
 ```CREATE VIEW``` is an alternative to modify your show result
 
 ```
@@ -46,7 +49,9 @@ Time: 0.031s
 ```
 
 ### Describe table *team_members*
+
 Using ```DESC``` SQL syntax to show table structure
+
 ```
 mysql brainware@localhost:connecc> DESC team_members;
 +-----------+---------------+--------+-------+-----------+----------------+
@@ -69,7 +74,7 @@ Time: 0.007s
 ### Describe table *users*
 Table user will contain user info account
 
-```
+```sql
 mysql brainware@localhost:connecc> CREATE TABLE users(
                                 -> id int(4) PRIMARY KEY auto_increment,
                                 -> username varchar(20),
@@ -91,6 +96,7 @@ Time: 0.005s
 
 Table *users*
 ```
+```sql
 mysql brainware@localhost:connecc> SELECT * FROM `users`;
 +------+------------+---------------+--------------------+
 |   id | username   | password      | email              |
