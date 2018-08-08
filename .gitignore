@@ -1,3 +1,5 @@
 node_modules
 *.zip
-
+devnote.*
+.vs/slnx.sqlite
+.env
