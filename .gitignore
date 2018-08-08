@@ -3,3 +3,4 @@ node_modules
 devnote.*
 .vs/slnx.sqlite
 .env
+database/connecc.sql
