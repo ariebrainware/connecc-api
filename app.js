@@ -33,9 +33,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   
   res.send({
-    message:'Error 500: Server internal Error'
-    
-  });
+    error: err.stack
+  })
 });
 
 module.exports = app;
