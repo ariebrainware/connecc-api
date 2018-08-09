@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-# CONNECC
 
-![Logo](images/logo.png)
-
-This is a documentation of CONNECC, the app that can make your life easier by organizing your contacts without a hassle.
-
-[Click here](https://stackfinite.github.io/connecc) for Live Preview.
-=======
-# connecc-api
+# CONNECC-api
 
 API endpoint for Connecc application
 
@@ -155,4 +147,3 @@ mycli -u yourusername < connecc.sql
 ```
 Enter your database user's password
 then you're good to go
->>>>>>> b002be16abd13cbddc149bc070635e679d053960
