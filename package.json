@@ -1,32 +1,32 @@
 {
   "name": "connecc-api",
-  "version": "0.3.0",
-  "description": "CONNECC-api is contain backend section for CONNECC application",
+  "version": "0.1.3",
+  "description": "A software to help you organize your contact. <https://nobody.netlify.com/>",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
+    "start": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node-dev index"
   },
-  "repository": "git@github.com:ariebrainware/connecc-api.git",
-  "keywords": [
-    "contact",
-    "web",
-    "application",
-    "api",
-    "localstorage",
-    "javascript",
-    "html",
-    "css",
-    "bootstrap4",
-    "json-api",
-    "nodejs"
-  ],
-  "author": "ariebrainware <publicu001@gmail.com>",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/ariebrainware/connecc/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glintsacademy-1/connecc.git"
   },
-  "homepage": "https://github.com/ariebrainware/connecc#readme",
+  "keywords": [
+    "connecc"
+  ],
+  "author": "Stackfinite",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/glintsacademy-1/connecc/issues"
+  },
+  "homepage": "https://github.com/glintsacademy-1/connecc#readme",
+  "devDependencies": {
+    "live-server": "^1.2.0",
+    "node-dev": "^3.1.3",
+    "nodemon": "^1.18.3"
+  },
+  "private": false,
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -38,9 +38,5 @@
     "morgan": "~1.9.0",
     "mysql2": "^1.6.1",
     "sequelize": "^4.38.0"
-  },
-  "devDependencies": {
-    "node-dev": "^3.1.3"
-  },
-  "private": true
+  }
 }

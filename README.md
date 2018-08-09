@@ -1,6 +1,7 @@
-# connecc-api
 
-API Section for Connecc application
+# CONNECC-api
+
+API endpoint for Connecc application
 
 
 | Endpoint           | HTTP   | Description             |
@@ -30,13 +31,16 @@ Adding Database Feature which is contains Connecc DevTeam's Information
 
 ```CREATE VIEW``` is an alternative to modify your show result
 
+__Input__
+
+```sql
+CREATE VIEW identity AS SELECT name,gender,from_date,address,title,email,github from team_members;
+SELECT * FROM identity;
 ```
-mysql brainware@localhost:connecc> CREATE VIEW identity AS SELECT name,gen
-                                -> der,from_date,address,title,email,githu
-                                -> b from team_members;
-Query OK, 0 rows affected
-Time: 0.066s
-mysql brainware@localhost:connecc> SELECT * FROM identity;
+
+__Output__
+
+```
 +----------------+----------+-------------+--------------------+----------------------+-----------------------+---------------------------+
 | name           | gender   | from_date   | address            | title                | email                 | github                    |
 |----------------+----------+-------------+--------------------+----------------------+-----------------------+---------------------------|
@@ -44,16 +48,18 @@ mysql brainware@localhost:connecc> SELECT * FROM identity;
 | Indro Lie      | M        | 2018-08-07  | Perumahan Baloi    | Backend Developer    | indrolie@gmail.com    | https://github.com/indrolie |
 | Abba Yosua     | M        | 2018-08-07  | Perumahan Bengkong | Frontend Developer   | abbasiagian@gmail.com | https://github.com/abbayosua|
 +----------------+----------+-------------+--------------------+----------------------+-----------------------+---------------------------+
-3 rows in set
-Time: 0.031s
 ```
 
 ### Describe table *team_members*
-
 Using ```DESC``` SQL syntax to show table structure
 
+__Input__
+```sql
+DESC team_members;
 ```
-mysql brainware@localhost:connecc> DESC team_members;
+
+__Output__
+```
 +-----------+---------------+--------+-------+-----------+----------------+
 | Field     | Type          | Null   | Key   |   Default | Extra          |
 |-----------+---------------+--------+-------+-----------+----------------|
@@ -67,22 +73,20 @@ mysql brainware@localhost:connecc> DESC team_members;
 | email     | varchar(30)   | YES    |       |    <null> |                |
 | github    | varchar(40)   | YES    |       |    <null> |                |
 +-----------+---------------+--------+-------+-----------+----------------+
-9 rows in set
-Time: 0.007s
+
 ```
 
 ### Describe table *users*
 Table user will contain user info account
 
+__Input__
 ```sql
-mysql brainware@localhost:connecc> CREATE TABLE users(
-                                -> id int(4) PRIMARY KEY auto_increment,
-                                -> username varchar(20),
-                                -> password varchar(32),
-                                -> email VARCHAR(30));
-Query OK, 0 rows affected
-Time: 0.576s
-mysql brainware@localhost:connecc> DESC `users`;
+CREATE TABLE users(id int(4) PRIMARY KEY auto_increment, username varchar(20), password varchar(32), email VARCHAR(30));
+DESC `users`;
+```
+
+__Output__
+```
 +----------+-------------+--------+-------+-----------+----------------+
 | Field    | Type        | Null   | Key   |   Default | Extra          |
 |----------+-------------+--------+-------+-----------+----------------|
@@ -91,24 +95,25 @@ mysql brainware@localhost:connecc> DESC `users`;
 | password | varchar(32) | YES    |       |    <null> |                |
 | email    | varchar(30) | YES    |       |    <null> |                |
 +----------+-------------+--------+-------+-----------+----------------+
-4 rows in set
-Time: 0.005s
+```
 
 Table *users*
-```
+
+__Input__
 ```sql
-mysql brainware@localhost:connecc> SELECT * FROM `users`;
+SELECT * FROM `users`;
+```
+__Output__
+```
 +------+------------+---------------+--------------------+
 |   id | username   | password      | email              |
 |------+------------+---------------+--------------------|
 |    1 | paulkece   | kangenmama123 | paulkece88@fbi.gov |
 |    2 | jenkins    | blackst0ne    | jenkins@nsa.gov    |
 +------+------------+---------------+--------------------+
-2 rows in set
-Time: 0.088s
 ``` 
 
-## JSON
+### JSON
 Request body example:
 
 ```json
@@ -119,3 +124,26 @@ Request body example:
   "address": "Alphabet Inc, USA"
 }
 ```
+
+## How to install
+First of all you need to follow [this link](https://github.com/creationix/nvm#manual-install) to install ```nvm``` . 
+[How to use nvm?](https://github.com/creationix/nvm#usage)
+
+Then you can simply clone this repository via terminal with syntax:
+
+```sh
+git clone https://github.com/ariebrainware/connecc-api.git
+```
+then after that, run this syntax in your terminal:
+
+```sh
+nvm install node && cd connecc-api && chmod +x setup.sh && sudo ./setup.sh
+```
+
+and then, import database ```connecc.sql``` using syntax:
+
+```sh
+mycli -u yourusername < connecc.sql
+```
+Enter your database user's password
+then you're good to go

@@ -1,8 +1,11 @@
 node_modules
+bower_components
 *.zip
+devnote
+.env
+.rar
 .vs/slnx.sqlite
 .env
-database/connecc.sql
-devnote
+database
 api/contacts
 api/devteam

@@ -14,7 +14,7 @@ const controller = {
                 })
             })
     },
-
+  
     addUser: (req, res, next) => {
         if (req.body.username && req.body.password && req.body.email) {
             User
@@ -39,6 +39,7 @@ const controller = {
             })
         }
     },
+  
     deleteUser: (req, res, next) => {
         const id = Number(req.params.id)
         User
@@ -49,8 +50,8 @@ const controller = {
             }).then(
                 res.status(200).send('Data successfully deleted')
             )
-
     },
+  
     updateUser: (req, res, next) => {
         const id = Number(req.params.id)
         if (req.body.password && req.body.email) {
@@ -70,8 +71,8 @@ const controller = {
                 message: "Please specify password field and email field!"
             })
         }
-
     },
+  
     searchUserByID: (req, res, next) => {
         const id = Number(req.params.id)
         User

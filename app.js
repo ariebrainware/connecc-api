@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
@@ -31,7 +32,6 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  
   res.send({
     error: err.stack
   })

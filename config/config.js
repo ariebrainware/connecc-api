@@ -16,7 +16,7 @@ module.exports = {
     "password": process.env.DB_PASS,
     "database": process.env.DB_NAME,
     "host": process.env.DB_HOST,
-    "dialect": process.env.DB_DIALECT,
+    "dialect": process.env.DB_DIALECT
   },
   "test": {
     "username": process.env.DB_USER,
@@ -30,6 +30,6 @@ module.exports = {
     "password": process.env.DB_PASS,
     "database": process.env.DB_NAME,
     "host": process.env.DB_HOST,
-    "dialect": process.env.DB_DIALECT,
+    "dialect": process.env.DB_DIALECT
   }
 }
