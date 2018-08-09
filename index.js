@@ -1,143 +1,110 @@
-<<<<<<< HEAD
 #!/usr/bin/env node
 
 require('dotenv-extended').load({
-    encoding: 'utf8',
-    silent: true,
-    path: '.env',
-    defaults: '.env.defaults',
-    schema: '.env.schema',
-    errorOnMissing: false,
-    errorOnExtra: false,
-    assignToProcessEnv: true,
-    overrideProcessEnv: false
-  });
-  
-  /**
-   * Module dependencies.
-   */
-  
-  const app = require('./app');
-  const debug = require('debug')('code-express-orm-mariadb:server');
-  const http = require('http');
-  const models = require('./models');
-  
-  /**
-   * Get port from environment and store in Express.
-   */
-  
-  const port = normalizePort(process.env.PORT || '3000');
-  app.set('port', port);
-  
-  /**
-   * Create HTTP server.
-   */
-  
-  const server = http.createServer(app);
-  
+  encoding: 'utf8',
+  silent: true,
+  path: '.env',
+  defaults: '.env.defaults',
+  schema: '.env.schema',
+  errorOnMissing: false,
+  errorOnExtra: false,
+  assignToProcessEnv: true,
+  overrideProcessEnv: false
+});
+
+/**
+ * Module dependencies.
+ */
+
+const app = require('./app');
+const debug = require('debug')('connecc-api:server');
+const http = require('http');
+const models = require('./models');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+models.sequelize.sync().then(function () {
   /**
    * Listen on provided port, on all network interfaces.
    */
-  
-  models.sequelize.sync().then(function () {
-    /**
-     * Listen on provided port, on all network interfaces.
-     */
-    server.listen(port, function () {
-      console.log('Express server listening on port ' + server.address().port);
-      debug('Express server listening on port ' + server.address().port);
-    });
-    server.on('error', onError);
-    server.on('listening', onListening);
+  server.listen(port, function () {
+    console.log('Express server listening on port ' + server.address().port);
+    debug('Express server listening on port ' + server.address().port);
   });
-  
-  /**
-   * Normalize a port into a number, string, or false.
-   */
-  
-  function normalizePort(val) {
-    const port = parseInt(val, 10);
-  
-    if (isNaN(port)) {
-      // named pipe
-      return val;
-    }
-  
-    if (port >= 0) {
-      // port number
-      return port;
-    }
-  
-    return false;
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
   }
-  
-  /**
-   * Event listener for HTTP server "error" event.
-   */
-  
-  function onError(error) {
-    if (error.syscall !== 'listen') {
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  const bind = typeof port === 'string' ?
+    'Pipe ' + port :
+    'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
       throw error;
-    }
-  
-    const bind = typeof port === 'string' ?
-      'Pipe ' + port :
-      'Port ' + port;
-  
-    // handle specific listen errors with friendly messages
-    switch (error.code) {
-      case 'EACCES':
-        console.error(bind + ' requires elevated privileges');
-        process.exit(1);
-        break;
-      case 'EADDRINUSE':
-        console.error(bind + ' is already in use');
-        process.exit(1);
-        break;
-      default:
-        throw error;
-    }
   }
-  
-  /**
-   * Event listener for HTTP server "listening" event.
-   */
-  
-  function onListening() {
-    const addr = server.address();
-    const bind = typeof addr === 'string' ?
-      'pipe ' + addr :
-      'port ' + addr.port;
-    debug('Listening on ' + bind);
-  }
-=======
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+}
 
-const devTeam = require('./api/devteam')
-const contact = require('./api/contacts')
+/**
+ * Event listener for HTTP server "listening" event.
+ */
 
-const server = express();
-const port = 3000;
-
-server.use(cors());
-server.use(bodyParser.json());
-server.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
-
-server.get(`/contacts`, contact.showContact);
-server.get(`/contacts/search`, contact.searchContact);
-server.post(`/contacts`, contact.addContact);
-server.delete(`/contacts/:id`, contact.deleteContact);
-server.get(`/connecc/devteam`, devTeam.showDevTeam);
-
-server.listen(port, () =>
-  console.log(`
-        Server listening on port ${port}
-        `)
-);
->>>>>>> b002be16abd13cbddc149bc070635e679d053960
+function onListening() {
+  const addr = server.address();
+  const bind = typeof addr === 'string' ?
+    'pipe ' + addr :
+    'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
