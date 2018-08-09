@@ -1,6 +1,5 @@
 {
   "name": "connecc-api",
-<<<<<<< HEAD
   "version": "0.1.3",
   "description": "A software to help you organize your contact. <https://nobody.netlify.com/>",
   "main": "index.js",
@@ -39,49 +38,5 @@
     "morgan": "~1.9.0",
     "mysql2": "^1.6.1",
     "sequelize": "^4.38.0"
-=======
-  "version": "0.3.0",
-  "description": "![Logo](images/logo.png)",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ariebrainware/connecc.git"
-  },
-  "keywords": [
-    "contact",
-    "web",
-    "application",
-    "api",
-    "localstorage",
-    "javascript",
-    "html",
-    "css",
-    "bootstrap4",
-    "json-api",
-    "nodejs"
-  ],
-  "author": "ariebrainware <publicu001@gmail.com>",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/ariebrainware/connecc/issues"
-  },
-  "homepage": "https://github.com/ariebrainware/connecc#readme",
-  "devDependencies": {
-    "nodemon": "^1.18.3"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "cors": "^2.8.4",
-    "dotenv-extended": "^2.2.0",
-    "express": "^4.16.3",
-    "mariadb": "^0.7.0",
-    "node-fetch": "^2.2.0"
-  },
-  "directories": {
-    "lib": "lib"
->>>>>>> b002be16abd13cbddc149bc070635e679d053960
   }
 }
