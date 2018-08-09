@@ -1,7 +1,15 @@
 node_modules
+<<<<<<< HEAD
 bower_components
 *.zip
 database/connecc.sql
 devnote
 .env
 .rar
+=======
+*.zip
+devnote.*
+.vs/slnx.sqlite
+.env
+database/connecc.sql
+>>>>>>> b002be16abd13cbddc149bc070635e679d053960
