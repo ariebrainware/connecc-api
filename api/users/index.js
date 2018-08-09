@@ -5,7 +5,7 @@ const controller = require('./controller')
 
 /* ROUTES/VIEW */
 router.get('/', controller.show);
-router.post('/add', controller.add);
+router.post('/', controller.add);
 router.get('/:id', controller.searchByID);
 
 
