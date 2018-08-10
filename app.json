@@ -5,12 +5,6 @@
     "postdeploy": "npm run setup"
   },
   "env": {
-    "DB_HOST": "167.99.67.109",
-    "DB_PORT": "3306",
-    "DB_NAME": "connecc",
-    "DB_USER": "arie",
-    "DB_PASSWORD": "changepassword",
-    "DB_DIALECT": "mysql"
   },
   "formation": {
   },
