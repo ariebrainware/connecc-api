@@ -1,46 +1,42 @@
 {
   "name": "connecc-api",
-  "version": "0.3.0",
-  "description": "![Logo](images/logo.png)",
+  "version": "0.1.3",
+  "description": "A software to help you organize your contact. <https://nobody.netlify.com/>",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node-dev index"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ariebrainware/connecc.git"
+    "url": "git+https://github.com/glintsacademy-1/connecc.git"
   },
   "keywords": [
-    "contact",
-    "web",
-    "application",
-    "api",
-    "localstorage",
-    "javascript",
-    "html",
-    "css",
-    "bootstrap4",
-    "json-api",
-    "nodejs"
+    "connecc"
   ],
-  "author": "ariebrainware <publicu001@gmail.com>",
-  "license": "GPL-3.0",
+  "author": "Stackfinite",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ariebrainware/connecc/issues"
+    "url": "https://github.com/glintsacademy-1/connecc/issues"
   },
-  "homepage": "https://github.com/ariebrainware/connecc#readme",
+  "homepage": "https://github.com/glintsacademy-1/connecc#readme",
   "devDependencies": {
+    "live-server": "^1.2.0",
+    "node-dev": "^3.1.3",
     "nodemon": "^1.18.3"
   },
+  "private": false,
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "cors": "^2.8.4",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
     "dotenv-extended": "^2.2.0",
-    "express": "^4.16.3",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
     "mariadb": "^0.7.0",
-    "node-fetch": "^2.2.0"
-  },
-  "directories": {
-    "lib": "lib"
+    "morgan": "~1.9.0",
+    "mysql2": "^1.6.1",
+    "sequelize": "^4.38.0"
   }
 }

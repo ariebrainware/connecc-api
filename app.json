@@ -1,0 +1,19 @@
+{
+  "name": "connecc-api",
+  "description": "Connecc-API is a backend section from Connecc Web Application",
+  "scripts": {
+    "postdeploy": "npm run setup"
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

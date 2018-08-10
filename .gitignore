@@ -1,5 +1,10 @@
 node_modules
+bower_components
 *.zip
-devnote.*
-.vs/slnx.sqlite
+database/
+api/connection/
+api/contacts/
+api/devteam/
+devnote
 .env
+.rar
