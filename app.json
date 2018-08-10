@@ -1,0 +1,25 @@
+{
+  "name": "connecc-api",
+  "description": "Connecc-API is a backend section from Connecc Web Application",
+  "scripts": {
+    "postdeploy": "npm run setup"
+  },
+  "env": {
+    "DB_HOST": "127.0.0.1",
+    "DB_PORT": "3000",
+    "DB_NAME": "connecc",
+    "DB_USER": "brainware",
+    "DB_PASSWORD": "defaultpassw0rd",
+    "DB_DIALECT": "mysql"
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
