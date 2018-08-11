@@ -6,12 +6,12 @@
   "scripts": {
     "start": "nodemon index",
     "dev": "node-dev index",
-    "create-seed-user":"sequelize seed:generate --name users",
-    "create-seed-devteam":"sequelize seed:generate --name devteam",
-    "create-seed-contacts":"sequelize seed:generate --name contacts",
-    "seed-user":"sequelize db:seed users",
-    "seed-devteam":"sequelize db:seed devteam",
-    "seed-contacts":"sequelize db:seed contacts"
+    "create-seed-user": "sequelize seed:generate --name users",
+    "create-seed-devteam": "sequelize seed:generate --name devteam",
+    "create-seed-contacts": "sequelize seed:generate --name contacts",
+    "seed-user": "sequelize db:seed users",
+    "seed-devteam": "sequelize db:seed devteam",
+    "seed-contacts": "sequelize db:seed contacts"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,6 @@
     "url": "https://github.com/ariebrainware/connecc-api/issues"
   },
   "homepage": "https://github.com/ariebrainware/connecc-api#readme",
-
   "devDependencies": {
     "live-server": "^1.2.0",
     "node-dev": "^3.1.3",
