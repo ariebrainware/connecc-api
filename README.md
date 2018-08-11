@@ -1,6 +1,8 @@
 
 # CONNECC-api
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ariebrainware/connecc-api.svg)](https://greenkeeper.io/)
+
 API endpoint for Connecc application
 
 

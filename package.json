@@ -29,10 +29,10 @@
   "private": false,
   "dependencies": {
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
+    "debug": "~3.1.0",
     "dotenv-extended": "^2.2.0",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
+    "http-errors": "~1.7.0",
     "jade": "~1.11.0",
     "mariadb": "^0.7.0",
     "morgan": "~1.9.0",
