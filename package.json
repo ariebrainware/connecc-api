@@ -6,13 +6,16 @@
   "scripts": {
     "start": "nodemon index",
     "dev": "node-dev index",
+    "migrate":"sequelize db:migrate",
+    "migrate-undo":"sequelize db:migrate:undo",
     "model-user":"sequelize model:generate --name user --attributes name:string,phone_number:string,email:string,address:text",
     "model-team-member":"sequelize model:generate --name team_member --attributes name:string,phone_number:string,email:string,address:string",
     "model-contact":"sequelize model:generate --name contact --attributes name:string,phone_number:string,email:string,address:text",
     "create-seed-user": "sequelize seed:generate --name users",
     "create-seed-devteam": "sequelize seed:generate --name devteam",
     "create-seed-contacts": "sequelize seed:generate --name contacts",
-    "seed":"sequelize db:seed:all"
+    "seed":"sequelize db:seed:all",
+    "seed-undo":"sequelize db:seed:undo"
   },
   "repository": {
     "type": "git",
