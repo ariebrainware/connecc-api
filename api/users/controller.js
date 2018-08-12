@@ -14,7 +14,7 @@ const controller = {
                 })
             })
     },
-  
+
     addUser: (req, res, next) => {
         if (req.body.username && req.body.password && req.body.email) {
             User
@@ -27,7 +27,9 @@ const controller = {
                 })
                 .save()
                 .then(user => {
-                    res.status(200).send(user)
+                    res.status(200).send({
+                        message: "User created!"
+                    })
                 }).catch(err => {
                     res.status(500).send({
                         message: err
@@ -39,7 +41,7 @@ const controller = {
             })
         }
     },
-  
+
     deleteUser: (req, res, next) => {
         const id = Number(req.params.id)
         User
@@ -51,7 +53,7 @@ const controller = {
                 res.status(200).send('Data successfully deleted')
             )
     },
-  
+
     updateUser: (req, res, next) => {
         const id = Number(req.params.id)
         if (req.body.password && req.body.email) {
@@ -60,7 +62,11 @@ const controller = {
                     password: req.body.password,
                     email: req.body.email,
                     updatedAt: new Date()
-                }, {where:{id: id}})
+                }, {
+                    where: {
+                        id: id
+                    }
+                })
                 .then(() => {
                     res.status(200).send({
                         message: "Updating success"
@@ -72,7 +78,7 @@ const controller = {
             })
         }
     },
-  
+
     searchUserByID: (req, res, next) => {
         const id = Number(req.params.id)
         User

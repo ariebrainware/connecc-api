@@ -9,18 +9,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       gender: {
-        type: Sequelize.ENUM
+        allowNull: false,
+        type: Sequelize.ENUM('M','F')
       },
       title: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       email: {
-        type: Sequelize.STRING
+        isEmail:true,
+        allowNull: false,
+        type: Sequelize.STRING(100)
       },
       github: {
+        isUrl:true,
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

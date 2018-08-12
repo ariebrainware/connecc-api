@@ -2,6 +2,8 @@
 # CONNECC-api
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/ariebrainware/connecc-api.svg)](https://greenkeeper.io/)
+![TravisCI badge](https://img.shields.io/badge/Travis--CI-Integrated-brightgreen.svg)
+![Content](https://img.shields.io/badge/Content-API-blue.svg)
 
 API endpoint for Connecc application
 
