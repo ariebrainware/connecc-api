@@ -1,30 +1,30 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var devTeam = sequelize.define('team_member', {
-    name:{
-      notNull:true, 
-      type: DataTypes.STRING
+  var team_member = sequelize.define('team_member', {
+    name: {
+      notNull: true,
+      type: DataTypes.STRING(50)
     },
     gender: {
-      notNull:true,
-      type: DataTypes.ENUM('M','F')
+      notNull: true,
+      type: DataTypes.ENUM('M', 'F')
     },
     title: {
-      notNull:true,
-      type: DataTypes.STRING
+      notNull: true,
+      type: DataTypes.STRING(50)
     },
     email: {
-      isEmail:true,
-      notNull:true,
-      type: DataTypes.STRING
+      isEmail: true,
+      notNull: true,
+      type: DataTypes.STRING(100)
     },
     github: {
-      isUrl:true,
+      isUrl: true,
       type: DataTypes.STRING
     }
   }, {});
-  devTeam.associate = function(models) {
+  team_member.associate = function (models) {
     // associations can be defined here
   };
-  return devTeam;
+  return team_member;
 };
