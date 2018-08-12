@@ -1,32 +1,45 @@
 {
   "name": "connecc-api",
-  "version": "0.1.3",
-  "description": "A software to help you organize your contact. <https://nobody.netlify.com/>",
+  "version": "1.0.0",
+  "description": "API and Backend section for Connecc application",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node-dev index"
+    "dev": "node-dev index",
+    "migrate":"sequelize db:migrate",
+    "migrate-undo":"sequelize db:migrate:undo",
+    "model-user":"sequelize model:generate --name user --attributes name:string,phone_number:string,email:string,address:text",
+    "model-team-member":"sequelize model:generate --name team_member --attributes name:string,phone_number:string,email:string,address:string",
+    "model-contact":"sequelize model:generate --name contact --attributes name:string,phone_number:string,email:string,address:text",
+    "create-seed-user": "sequelize seed:generate --name users",
+    "create-seed-devteam": "sequelize seed:generate --name devteam",
+    "create-seed-contacts": "sequelize seed:generate --name contacts",
+    "seed":"sequelize db:seed:all",
+    "seed-undo":"sequelize db:seed:undo"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glintsacademy-1/connecc.git"
+    "url": "git+https://github.com/ariebrainware/connecc-api.git"
   },
   "keywords": [
-    "connecc"
+    "api",
+    "backend",
+    "contacts",
+    "web",
+    "application"
   ],
-  "author": "Stackfinite",
-  "license": "MIT",
+  "author": "Arie Brainware <publicu001[at]gmail[dot]com>",
+  "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/glintsacademy-1/connecc/issues"
+    "url": "https://github.com/ariebrainware/connecc-api/issues"
   },
-  "homepage": "https://github.com/glintsacademy-1/connecc#readme",
+  "homepage": "https://github.com/ariebrainware/connecc-api#readme",
   "devDependencies": {
     "live-server": "^1.2.0",
     "node-dev": "^3.1.3",
     "nodemon": "^1.18.3"
   },
-  "private": false,
+  "private": true,
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~3.1.0",
