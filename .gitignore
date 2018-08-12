@@ -2,9 +2,7 @@ node_modules
 bower_components
 *.zip
 database/
-api/connection/
 api/contacts/
-api/devteam/
 devnote
 .env
 .rar
