@@ -2,17 +2,23 @@ const models = require('../../models')
 const User = models.User
 
 const controller = {
-    showUser: (req, res, next) => {
-        User
-            .findAll().then(users => {
-                res.send({
-                    users
-                });
+    showUser: async () => {
+        let result = {}
+        await User
+            .findAll({
+                attributes: ['id', 'username', 'email', 'createdAt', 'updatedAt']
+            }).then(users => {
+                result = {
+                    status: "success",
+                    users: users
+                }
             }).catch(error => {
-                res.status(400).send({
-                    error
-                })
+                result = {
+                    status: "error",
+                    users: contact
+                }
             })
+            return result
     },
 
     addUser: (req, res, next) => {
@@ -51,7 +57,7 @@ const controller = {
                 }
             }).then(
                 res.status(200).send({
-                    message:'Data successfully deleted'
+                    message: 'Data successfully deleted'
                 })
             )
     },
