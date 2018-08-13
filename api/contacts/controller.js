@@ -2,17 +2,23 @@ const models = require("../../models");
 const contact = models.contact;
 
 const controller = {
-    showContacts: (req, res, next) => {
-        contact
+    showContacts: async () => {
+        let result = {}
+        await contact
             .findAll()
             .then(contact => {
-                res.status(200).send({
-                    contact
-                });
+                result = {
+                    status: "success",
+                    data: contact
+                }
             })
             .catch(err => {
-                res.status(500).send(err);
+                result = {
+                    status: "error",
+                    data: contact
+                }
             });
+        return result
     },
 
     searchByID: (req, res, next) => {
@@ -38,27 +44,26 @@ const controller = {
         const keyword = req.query.q;
         const Sequelize = require('sequelize');
         const Op = Sequelize.Op
-            contact
-                .findAll({
-                    where: {
-                        name: {
-                            [Op.like]: `%${keyword}%`
-                        }
+        contact
+            .findAll({
+                where: {
+                    name: {
+                        [Op.like]: `%${keyword}%`
                     }
-                })
-                .then(result => {
-                    console.log(result)
-                    if (result) {
-                        res.status(200).send({
-                            
-                            result
-                        });
-                    } else {
-                        res.status(404).send({
-                            message: "Data not found!"
-                        })
-                    }
-                });
+                }
+            })
+            .then(contact => {
+                console.log(contact)
+                if (contact) {
+                    res.status(200).send({
+                        contact
+                    });
+                } else {
+                    res.status(404).send({
+                        message: "Data not found!"
+                    })
+                }
+            });
     },
 
     addContact: (req, res, next) => {
