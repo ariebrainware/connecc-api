@@ -7,14 +7,14 @@ const controller = {
         await Team_member
         .findAll().then(devteam => {
             result = {
-                status: 'success',
-                message: devteam
+                status: "success",
+                devteam: devteam
             }
             devteam
         }).catch(error => {
             result = {
-                status: 'success',
-                message: devteam
+                status: "error",
+                devteam: devteam
             }
         })
 
