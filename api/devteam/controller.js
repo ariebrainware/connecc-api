@@ -2,17 +2,23 @@ const models = require('../../models/')
 const Team_member = models.team_member
 
 const controller = {
-    showDevTeam: (req, res) => {
-        Team_member
-            .findAll().then(devteam => {
-                res.send({
-                    devteam
-                });
-            }).catch(error => {
-                res.status(400).send({
-                    error
-                })
-            })
+    listDevTeam: async () => {
+        let result = {};
+        await Team_member
+        .findAll().then(devteam => {
+            result = {
+                status: 'success',
+                message: devteam
+            }
+            devteam
+        }).catch(error => {
+            result = {
+                status: 'success',
+                message: devteam
+            }
+        })
+
+        return result;
     },
     searchByID: (req, res, next) => {
         const id = req.params.id
