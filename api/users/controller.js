@@ -50,7 +50,9 @@ const controller = {
                     id: id
                 }
             }).then(
-                res.status(200).send('Data successfully deleted')
+                res.status(200).send({
+                    message:'Data successfully deleted'
+                })
             )
     },
 

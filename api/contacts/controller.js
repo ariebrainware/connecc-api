@@ -38,7 +38,6 @@ const controller = {
         const keyword = req.query.q;
         const Sequelize = require('sequelize');
         const Op = Sequelize.Op
-        // if (keyword) {
             contact
                 .findAll({
                     where: {
@@ -60,11 +59,6 @@ const controller = {
                         })
                     }
                 });
-        // } else {
-        //     res.status(400).send({
-        //         message: "Please specify your keyword!"
-        //     });
-        // }
     },
 
     addContact: (req, res, next) => {

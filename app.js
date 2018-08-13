@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const cors = require('cors')
 
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -10,7 +11,7 @@ const devTeamRouter = require('./api/devteam');
 const contactsRouter = require('./api/contacts');
 
 const app = express();
-
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
