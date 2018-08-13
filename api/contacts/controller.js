@@ -9,13 +9,13 @@ const controller = {
             .then(contact => {
                 result = {
                     status: "success",
-                    data: contact
+                    contact: contact
                 }
             })
             .catch(err => {
                 result = {
                     status: "error",
-                    data: contact
+                    
                 }
             });
         return result
