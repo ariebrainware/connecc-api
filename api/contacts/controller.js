@@ -2,33 +2,28 @@ const models = require("../../models");
 const contact = models.contact;
 
 const controller = {
-    showContacts: async () => {
-        let result = {}
-        await contact
+    show: (req, res, next) => {
+        contact
             .findAll()
-            .then(contact => {
-                result = {
-                    status: "success",
-                    contact: contact
-                }
+            .then(contacts => {
+                res.status(200).send({
+                    contacts
+                })
             })
             .catch(err => {
-                result = {
-                    status: "error",
-                    
-                }
+                res.status(500).send({
+                    contacts
+                })
             });
-        return result
     },
-
     searchByID: (req, res, next) => {
         const id = req.params.id;
         contact
             .findById(id)
-            .then(contact => {
-                if (contact)
+            .then(contacts => {
+                if (contacts)
                     res.status(200).send({
-                        contact
+                        contacts
                     });
                 else
                     res.status(404).send({
@@ -39,7 +34,6 @@ const controller = {
                 res.status(400).send(err);
             });
     },
-
     searchByKeyword: (req, res, next) => {
         const keyword = req.query.q;
         const Sequelize = require('sequelize');
@@ -52,11 +46,11 @@ const controller = {
                     }
                 }
             })
-            .then(contact => {
-                console.log(contact)
-                if (contact) {
+            .then(contacts => {
+                console.log(contacts)
+                if (contacts) {
                     res.status(200).send({
-                        contact
+                        contacts
                     });
                 } else {
                     res.status(404).send({
@@ -65,15 +59,14 @@ const controller = {
                 }
             });
     },
-
-    addContact: (req, res, next) => {
+    add: (req, res, next) => {
         if (
-            (req.body.name, req.body.phone_number, req.body.email, req.body.address)
+            (req.body.name, req.body.phoneNumber, req.body.email, req.body.address)
         ) {
             contact
                 .build({
                     name: req.body.name,
-                    phone_number: req.body.phone_number,
+                    phone_number: req.body.phoneNumber,
                     email: req.body.email,
                     address: req.body.address,
                     createdAt: new Date(),
@@ -81,30 +74,30 @@ const controller = {
                 })
                 .save()
                 .then(contact => {
-                    res.status(200).send({
-                        message: "Contact saved!"
-                    });
+                    res.status(200).send(
+                        contact
+                    );
                 });
         } else
             res.send({
                 message: "Please fill the input fieild!"
             });
     },
-
-    deleteContact: (req, res, next) => {
-        const id = req.params.id;
+    delete: (req, res) => {
+        const id = Number(req.params.id);
         if (id) {
-            const check = contact.findById(id);
+            const check = contact.findById(id) || false;
+            console.log(check)
             if (check) {
                 contact
                     .destroy({
                         where: {
-                            id: id
+                            id
                         }
                     })
                     .then(() => {
                         res.status(200).send({
-                            message: "Contact deleted!"
+                            message: `ID = ${id} deleted`
                         });
                     });
             } else {
@@ -117,8 +110,7 @@ const controller = {
                 message: "Please specify contact id"
             });
     },
-
-    updateContact: (req, res, next) => {
+    update: (req, res, next) => {
         const id = req.params.id;
         if (id) {
             const check = contact.findById(id);
@@ -134,8 +126,8 @@ const controller = {
                             id: id
                         }
                     })
-                    .then({
-                        message: "Contact deleted!"
+                    .then(contact => {
+                        res.status(200).send(contact)
                     });
             } else {
                 res.send({
