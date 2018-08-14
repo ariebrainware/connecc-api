@@ -7,7 +7,6 @@ const controller = {
             .findAll({
                 attributes: ['id', 'username', 'email', 'createdAt', 'updatedAt']
             }).then(users => {
-                console.log(users)
                 res.status(200).send({
                     users
                 })
