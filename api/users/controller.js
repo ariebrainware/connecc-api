@@ -2,26 +2,23 @@ const models = require('../../models')
 const User = models.User
 
 const controller = {
-    showUser: async () => {
-        let result = {}
-        await User
+    show: (req,res,next) => {
+        User
             .findAll({
                 attributes: ['id', 'username', 'email', 'createdAt', 'updatedAt']
             }).then(users => {
-                result = {
-                    status: "success",
-                    users: users
-                }
+                console.log(users)
+                res.status(200).send({
+                    users
+                })
             }).catch(error => {
-                result = {
-                    status: "error",
-                    users: contact
-                }
+                res.status(500).send({
+                    error
+                })
             })
-            return result
     },
 
-    addUser: (req, res, next) => {
+    add: (req, res, next) => {
         if (req.body.username && req.body.password && req.body.email) {
             User
                 .build({
@@ -48,7 +45,7 @@ const controller = {
         }
     },
 
-    deleteUser: (req, res, next) => {
+    delete: (req, res, next) => {
         const id = Number(req.params.id)
         User
             .destroy({
@@ -62,7 +59,7 @@ const controller = {
             )
     },
 
-    updateUser: (req, res, next) => {
+    update: (req, res, next) => {
         const id = Number(req.params.id)
         if (req.body.password && req.body.email) {
             User
