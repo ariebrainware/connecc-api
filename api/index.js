@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const rootUrl = "https://connecc-api.herokuapp.com"
+const rootUrl = "https://connecc-api.herokuapp.com/"
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.send({
