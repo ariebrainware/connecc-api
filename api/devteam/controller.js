@@ -5,12 +5,12 @@ const controller = {
     listDevTeam: (req, res, next) => {
         Team_member
             .findAll().then(devteam => {
-                res.status(20).send({
+                res.status(200).send({
                     devteam
                 })
             }).catch(error => {
-                res.status(20).send({
-                    devteam
+                res.status(400).send({
+                    error
                 })
             })
     },
