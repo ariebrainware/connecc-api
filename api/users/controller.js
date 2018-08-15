@@ -1,8 +1,11 @@
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+
 const models = require('../../models')
 const User = models.User
 
 const controller = {
-    show: (req,res,next) => {
+    show: (req, res, next) => {
         User
             .findAll({
                 attributes: ['id', 'username', 'email', 'createdAt', 'updatedAt']
@@ -17,25 +20,44 @@ const controller = {
             })
     },
 
-    add: (req, res, next) => {
-        if (req.body.username && req.body.password && req.body.email) {
-            User
-                .build({
-                    username: req.body.username,
-                    password: req.body.password,
-                    email: req.body.email,
-                    createdAt: new Date(),
-                    updatedAt: new Date()
+    signup: (req, res) => {
+        const {
+            username,
+            password,
+            email
+        } = req.body
+
+        if (username && password && email) {
+            const saltRounds = 5
+            bcrypt
+                .hash(password, saltRounds)
+                .then(hash => {
+                    console.log('HASH', hash)
+                    return {
+                        username,
+                        password: hash,
+                        email,
+                        createdAt: new Date(),
+                        updatedAt: new Date()
+                    }
                 })
-                .save()
-                .then(user => {
-                    res.status(200).send({
-                        message: "User created!"
-                    })
-                }).catch(err => {
-                    res.status(500).send({
-                        message: err
-                    })
+                .then(newUser => {
+                    User.build(newUser)
+                        .save()
+                        .then(user => {
+                            res.status(200).send({
+                                message: "User created!",
+                                user: {
+                                    id: user.id,
+                                    username: user.username,
+                                    email: user.email,
+                                }
+                            })
+                        }).catch(err => {
+                            res.status(500).send({
+                                message: err
+                            })
+                        })
                 })
         } else {
             res.status(404).send({
@@ -83,7 +105,7 @@ const controller = {
         }
     },
 
-    searchUserByID: (req, res, next) => {
+    searchUserByID: (req, res) => {
         const id = Number(req.params.id)
         User
             .findById(id)
@@ -102,6 +124,45 @@ const controller = {
                     error
                 })
             })
+    },
+    signin: (req, res) => {
+        const {
+            username,
+            password
+        } = req.body
+        if (username && password) {
+            User
+                .findOne({
+                    where: {
+                        username
+                    }
+                })
+                .then(user => {
+                    // const token =  jwt.sign({
+                        
+
+                    //     })
+                    // }
+                    bcrypt
+                        .compare(password, user.password)
+                        .then(response => {
+                            if (response) {
+                                res.status(200).send({
+                                    message: "Sign In Success"
+
+                                })
+                            } else {
+                                res.status(400).send({
+                                    message: "Sign In fail!"
+                                })
+                            }
+                        })
+                })
+        } else {
+            res.status(400).send({
+                message: "Username or password is wrong"
+            })
+        }
     }
 }
 
