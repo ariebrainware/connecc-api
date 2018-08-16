@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon index",
     "dev": "node-dev index",
-    "test": "npm run migrate",
+    "test": "npm i -g sequelize && npm run migrate",
     "migrate": "sequelize db:migrate",
     "migrate-undo": "sequelize db:migrate:undo",
     "model-user": "sequelize model:generate --name user --attributes name:string,phone_number:string,email:string,address:text",
