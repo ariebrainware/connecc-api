@@ -4,7 +4,7 @@ nvm:
   - 0.33.11
 
 node:
-  - 10.8.0
+  - 8.11.4
 
 install:
   - npm install
