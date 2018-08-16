@@ -89,10 +89,10 @@ const controller = {
                     email: req.body.email,
                     updatedAt: new Date()
                 }, {
-                    where: {
-                        id: id
-                    }
-                })
+                        where: {
+                            id: id
+                        }
+                    })
                 .then(() => {
                     res.status(200).send({
                         message: "Updating success"
@@ -138,18 +138,27 @@ const controller = {
                     }
                 })
                 .then(user => {
-                    // const token =  jwt.sign({
-                        
-
-                    //     })
-                    // }
+                    const token = jwt.sign(
+                        {
+                            iat: Math.floor(Date.now() / 1000) - 30,
+                            data: {
+                                id: user.id,
+                                username: user.username,
+                                email: user.email
+                            }
+                        },
+                        process.env.JWT_SECRET,
+                        {
+                            expiresIn: '1d'
+                        }
+                    )
                     bcrypt
                         .compare(password, user.password)
                         .then(response => {
                             if (response) {
                                 res.status(200).send({
-                                    message: "Sign In Success"
-
+                                    message: "Sign In Success",
+                                    token
                                 })
                             } else {
                                 res.status(400).send({
@@ -163,6 +172,10 @@ const controller = {
                 message: "Username or password is wrong"
             })
         }
+    },
+
+    signout: (req, res, next) => {
+        res.status(200).send({ message: "Successfully log out!" })
     }
 }
 
