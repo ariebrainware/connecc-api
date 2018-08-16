@@ -1,38 +1,72 @@
-const models = require('../../models')
-const contact = models.contact
+const models = require("../../models");
+const contact = models.contact;
 
 const controller = {
-    showContacts: (req, res, next) => {
+    show: (req, res, next) => {
         contact
-            .findAll().then(contact => {
+            .findAll()
+            .then(contacts => {
                 res.status(200).send({
-                    contact
+                    contacts
                 })
-            }).catch(err => {
-                res.status(500).send(err)
             })
+            .catch(err => {
+                res.status(500).send({
+                    contacts
+                })
+            });
     },
     searchByID: (req, res, next) => {
-        const id = req.params.id
+        const id = req.params.id;
         contact
             .findById(id)
-            .then(contact => {
-                if (contact) res.status(200).send({
-                    contact
-                })
-                else res.status(404).send({
-                    message: "Contact not found"
-                })
-            }).catch(err => {
-                res.status(400).send(err)
+            .then(contacts => {
+                if (contacts)
+                    res.status(200).send({
+                        contacts
+                    });
+                else
+                    res.status(404).send({
+                        message: "Contact not found"
+                    });
             })
+            .catch(err => {
+                res.status(400).send(err);
+            });
     },
-    addContact: (req, res, next) => {
-        if (req.body.name, req.body.phone_number, req.body.email, req.body.address) {
+    searchByKeyword: (req, res, next) => {
+        const keyword = req.query.q;
+        const Sequelize = require('sequelize');
+        const Op = Sequelize.Op
+        contact
+            .findAll({
+                where: {
+                    name: {
+                        [Op.like]: `%${keyword}%`
+                    }
+                }
+            })
+            .then(contacts => {
+                console.log(contacts)
+                if (contacts) {
+                    res.status(200).send({
+                        contacts
+                    });
+                } else {
+                    res.status(404).send({
+                        message: "Data not found!"
+                    })
+                }
+            });
+    },
+    add: (req, res, next) => {
+        if (
+            (req.body.name, req.body.phoneNumber, req.body.email, req.body.address)
+        ) {
             contact
                 .build({
                     name: req.body.name,
-                    phone_number: req.body.phone_number,
+                    phone_number: req.body.phoneNumber,
                     email: req.body.email,
                     address: req.body.address,
                     createdAt: new Date(),
@@ -40,42 +74,46 @@ const controller = {
                 })
                 .save()
                 .then(contact => {
-                    res.status(200).send({
-                        message: "Contact saved!"
-                    })
-                })
-        } else res.send({
-            message: "Please fill the input fieild!"
-        })
+                    res.status(200).send(
+                        contact
+                    );
+                });
+        } else
+            res.send({
+                message: "Please fill the input fieild!"
+            });
     },
-    deleteContact: (req, res, next) => {
-        const id = req.params.id
+    delete: (req, res) => {
+        const id = Number(req.params.id);
         if (id) {
-            const check = contact.findById(id)
+            const check = contact.findById(id) || false;
+            console.log(check)
             if (check) {
                 contact
                     .destroy({
                         where: {
-                            id: id
+                            id
                         }
-                    }).then(() => {
-                        res.status(200).send({
-                            message: "Contact deleted!"
-                        })
                     })
+                    .then(() => {
+                        res.status(200).send({
+                            message: `ID = ${id} deleted`
+                        });
+                    });
             } else {
                 res.send({
                     message: "Contact doesnt exist"
-                })
+                });
             }
-        } else res.send({
-            message: "Please specify contact id"
-        })
+        } else
+            res.send({
+                message: "Please specify contact id"
+            });
     },
-    updateContact: (req, res, next) => {
-        const id = req.params.id
+    update: (req, res, next) => {
+        const id = req.params.id;
         if (id) {
-            const check = contact.findById(id)
+            const check = contact.findById(id);
             if (check) {
                 contact
                     .update({
@@ -88,18 +126,18 @@ const controller = {
                             id: id
                         }
                     })
-                    .then({
-                        message: "Contact deleted!"
-                    })
+                    .then(contact => {
+                        res.status(200).send(contact)
+                    });
             } else {
                 res.send({
                     message: "Contact doesnt exist"
-                })
+                });
             }
-        } else res.send({
-            message: "Please specify contact id"
-        })
+        } else
+            res.send({
+                message: "Please specify contact id"
+            });
     }
-
-}
-module.exports = controller
+};
+module.exports = controller;

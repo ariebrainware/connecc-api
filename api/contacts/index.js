@@ -4,10 +4,11 @@ const router = express.Router();
 const controller = require('./controller')
 
 /* ROUTES/VIEW */
-router.get('/', controller.showContacts);
-router.post('/', controller.addContact);
+router.get('/', controller.show)
+router.get('/search', controller.searchByKeyword);
+router.post('/', controller.add);
 router.get('/:id', controller.searchByID);
-router.delete('/:id', controller.deleteContact)
-router.put('/:id',controller.updateContact)
+router.delete('/:id', controller.delete)
+router.put('/:id',controller.update)
 
 module.exports = router;
