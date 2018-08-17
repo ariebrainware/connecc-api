@@ -127,7 +127,9 @@ const controller = {
                         }
                     })
                     .then(contact => {
-                        res.status(200).send(contact)
+                        res.status(200).send({
+                            message:"Contact updated!"
+                        })
                     });
             } else {
                 res.send({
