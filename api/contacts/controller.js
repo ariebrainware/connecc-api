@@ -119,7 +119,7 @@ const controller = {
                     .update({
                         name: req.body.name,
                         phone_number: req.body.phone_number,
-                        email: req.boy.email,
+                        email: req.body.email,
                         address: req.body.address
                     }, {
                         where: {
