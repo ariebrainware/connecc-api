@@ -4,7 +4,7 @@
   "description": "API and Backend section for Connecc application",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index",
+    "start": "node index",
     "dev": "node-dev index",
     "test": "node index",
     "migrate": "sequelize db:migrate",
