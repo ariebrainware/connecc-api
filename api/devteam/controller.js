@@ -2,12 +2,12 @@ const models = require('../../models/')
 const Team_member = models.team_member
 
 const controller = {
-    showDevTeam: (req, res) => {
+    listDevTeam: (req, res, next) => {
         Team_member
             .findAll().then(devteam => {
-                res.send({
+                res.status(200).send({
                     devteam
-                });
+                })
             }).catch(error => {
                 res.status(400).send({
                     error
