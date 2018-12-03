@@ -1,0 +1,9 @@
+build:
+  languages:
+    - nodejs
+  pre:
+    - npm install
+  post:
+    - echo 'app installed'
+run:
+  web: npm start
