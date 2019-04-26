@@ -6,3 +6,5 @@ devnote
 .env
 .rar
 package-lock.json
+.travis/deploy_rsa.pub
+.travis/deploy_rsa
