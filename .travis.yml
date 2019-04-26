@@ -1,10 +1,10 @@
 language: node_js
 
 nvm:
-  - 0.33.11
+  - 6.9.0
 
 node:
-  - 8.11.4
+  - 10.15.1
 
 install:
   - npm install
