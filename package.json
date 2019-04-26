@@ -60,7 +60,7 @@
     "jsonwebtoken": "^8.5.1",
     "mariadb": "^0.7.0",
     "morgan": "^1.9.1",
-    "mysql2": "^1.6.4",
+    "mysql2": "^1.6.5",
     "sequelize": "^5.2.10"
   }
 }
