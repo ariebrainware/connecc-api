@@ -123,7 +123,7 @@ Request body example:
 ```json
 {
   "name": "Alpha",
-  "phoneNumber": "+62-8-1993-101010",
+  "phoneNumber": "+62-8-1234-56789",
   "email": "alpha@alphabet.com",
   "address": "Alphabet Inc, USA"
 }
